@@ -5,7 +5,7 @@ public class GameEngine{
         boolean isStart = GameMenu.callMenu();
         if (isStart){
             System.out.println("Game Started!");
-            
+            PlayerDatas.Player player = GameLoad.loadSavedGame();
         }
     }
 }

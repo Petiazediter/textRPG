@@ -3,14 +3,16 @@ package game;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.nio.file.Paths;
 
 public class GameLoad{
     public static PlayerDatas.Player loadSavedGame(){
         PlayerDatas.Player s = new PlayerDatas.Player();
-        
-        String csvFile = "gamesave.csv";
+        System.out.println(System.getProperty("user.dir"));
+        String csvFile = (System.getProperty("user.dir") + "/gamesave.csv");
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -59,6 +61,15 @@ public class GameLoad{
     }
 
     public static void saveGame(PlayerDatas.Player player){
-        
+        String[] save = {Integer.toString(player.level), player.name, Integer.toString(player.health), player.cast};
+        File dir = new File("tmp/test");
+        dir.mkdirs();
+        File file = new File(System.getProperty("user.dir") + "/gamesave.csv");
+        System.out.println("ye");
+        tmp.createNewFile();
+        FileWriter w = new FileWriter(file);
+        CSVWriter writer = new CSVWriter(w);
+        writer.writeNext(save);
+        writer.close();
     }
 }
